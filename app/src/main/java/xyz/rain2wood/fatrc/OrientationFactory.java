@@ -9,6 +9,8 @@ public class OrientationFactory {
     private static float lastPitch = 0.0f;
     private static float lastRoll = 0.0f;
 
+    static int threshold = 35;
+
     public static final int ORIENTATION_FRONT = 0;
     public static final int ORIENTATION_BACK = 1;
     public static final int ORIENTATION_LEFT = 2;
@@ -21,16 +23,16 @@ public class OrientationFactory {
         float pitch = orientation[1] * (180 / (float) Math.PI);
         float roll = orientation[2] * (180 / (float) Math.PI);
 
-        if (pitch > lastPitch + 45) {
+        if (pitch > lastPitch + threshold) {
             lastPitch = pitch;
             return ORIENTATION_FRONT;
-        } else if (pitch < lastPitch - 45) {
+        } else if (pitch < lastPitch - threshold) {
             lastPitch = pitch;
             return ORIENTATION_BACK;
-        } else if (roll > lastRoll + 45) {
+        } else if (roll > lastRoll + threshold) {
             lastRoll = roll;
             return ORIENTATION_RIGHT;
-        } else if (roll < lastRoll - 45) {
+        } else if (roll < lastRoll - threshold) {
             lastRoll = roll;
             return ORIENTATION_LEFT;
         }
