@@ -39,4 +39,5 @@ public class OrientationFactory {
 
         return -1;
     }
+
 }
